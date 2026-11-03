@@ -22,14 +22,20 @@ The owner must review each pending request and contact the customer to confirm o
 - `RESEND_FROM_EMAIL`
 - `NEXT_PUBLIC_SITE_URL`
 
-## Content still required before public launch
-- Official restaurant logo and approved menu with descriptions/prices.
-- Confirmed address, telephone, opening hours and social links.
-- Licensed restaurant/food photography.
-- Verified privacy notice and cookie-management platform/configuration.
-- Complete human-reviewed translations for all eleven languages.
+## Content and launch checklist
+- Add the official restaurant logo and approved menu with descriptions/prices.
+- Confirm the address, telephone, opening hours and social links.
+- Replace illustrative stock photography with licensed restaurant photography.
+- Complete and legally validate the privacy notice with the controller's legal identity, contact details and retention period.
+- Configure a compliant cookie/consent solution if analytics, advertising or other non-essential technologies are added.
+- Review the translations with a native speaker before launch.
 
-The language selector includes eleven options, but only Spanish and English have complete copy in this first scaffold; other languages currently fall back to English. The cookie notice only explains essential technical cookies; it is not a consent-management platform. No analytics or advertising scripts are installed.
+## Current implementation notes
+- The language selector has interface translations for Spanish, English, French, German, Italian, Portuguese, Dutch, Russian, Polish, Swedish and Traditional Chinese.
+- The menu intentionally displays a preparation notice rather than invented dishes or prices.
+- The cookie banner is a local-storage notice, not a cookie-consent management platform. No analytics or advertising scripts are installed.
+- The privacy page is an informative draft and must be completed with the restaurant operator's legal details before launch.
+- The reservation request is stored as pending. There is no authenticated admin dashboard or automated customer confirmation yet.
 
 ## Deploy
-Import branch `cielo-largo-v2` from this repository into a NEW Vercel project. Set the environment variables above, run the Supabase SQL, then deploy. Configure the real domain only after ownership and DNS access are confirmed.
+Use the dedicated `cielo-largo-v2` branch. Set the environment variables above and run the Supabase SQL before enabling live reservations. Configure the real domain only after ownership and DNS access are confirmed.
