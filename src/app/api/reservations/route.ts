@@ -8,7 +8,7 @@ const schema = z.object({
   phone: z.string().trim().min(6).max(30),
   email: z.email(),
   reservation_date: z.iso.date(),
-  reservation_time: z.string().regex(/^([01]\\d|2[0-3]):[0-5]\\d$/),
+  reservation_time: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/),
   guests: z.coerce.number().int().min(1).max(20),
   notes: z.string().max(1000).optional().default(""),
   locale: z.string().max(8).optional().default("es"),
