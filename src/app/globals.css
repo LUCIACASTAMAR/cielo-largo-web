@@ -4,3 +4,7 @@
 
 .aboutcopy h2.sectionhead{font:400 clamp(36px,4vw,54px)/1.1 'Playfair Display',serif;margin:12px 0 20px}
 .privacy-page{min-height:100vh;background:var(--paper);padding:54px 22px 90px}.privacy-shell{max-width:780px;margin:0 auto}.privacy-back{display:inline-block;color:var(--wine);font-size:13px;margin-bottom:50px;text-decoration:underline;text-underline-offset:4px}.privacy-eyebrow{font-size:11px;letter-spacing:3px;color:var(--wine)}.privacy-shell h1{font:400 clamp(42px,7vw,64px)/1.05 'Playfair Display',serif;margin:18px 0 30px}.privacy-shell h2{font:500 22px 'Playfair Display';margin:32px 0 10px}.privacy-shell p{color:#655b55;line-height:1.85}.privacy-warning{padding:18px 20px;background:#eee4d8;border-left:3px solid var(--wine)}.privacy-updated{font-size:12px;margin-top:40px}
+
+
+/* Keep the main navigation accessible while scrolling */
+.nav{position:sticky;top:0;z-index:100;background:var(--paper);box-shadow:0 1px 0 rgba(23,20,20,.08)}
