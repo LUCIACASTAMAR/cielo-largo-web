@@ -1,6 +1,6 @@
 # Cielo Largo — V2
 
-Next.js website for Cielo Largo with a responsive editorial design and a reservation-request flow.
+Next.js website for Cielo Largo with a responsive editorial design and a reservation-request API.
 
 ## Local development
 1. Install Node.js 20+.
@@ -12,7 +12,7 @@ Next.js website for Cielo Largo with a responsive editorial design and a reserva
 ## Reservation workflow
 The public form creates a `pending` request through `POST /api/reservations`. It does not confirm a table automatically. If Resend and the restaurant email are configured, an email notification is sent to the restaurant.
 
-The owner must review each pending request and contact the customer to confirm or reject it. A dedicated authenticated admin dashboard and transactional customer status emails are a subsequent implementation step; do not describe those as live yet.
+The owner must review each pending request and contact the customer to confirm or reject it. A dedicated authenticated admin dashboard and customer status emails are not implemented yet.
 
 ## Required deployment environment variables
 - `SUPABASE_URL`
@@ -29,7 +29,7 @@ The owner must review each pending request and contact the customer to confirm o
 - Verified privacy notice and cookie-management platform/configuration.
 - Complete human-reviewed translations for all eleven languages.
 
-The current UI includes English and Spanish copy; the other language options are scaffolded and fall back to English until translations are completed. The cookie notice is a visual consent placeholder, not a certified CMP. Do not use analytics or non-essential tracking until a compliant consent manager is installed and configured.
+The language selector includes eleven options, but only Spanish and English have complete copy in this first scaffold; other languages currently fall back to English. The cookie notice only explains essential technical cookies; it is not a consent-management platform. No analytics or advertising scripts are installed.
 
 ## Deploy
-Import this repository/branch into Vercel, set the environment variables above, and deploy. Run the Supabase SQL before enabling reservations. Configure the real domain after ownership and DNS access are confirmed.
+Import branch `cielo-largo-v2` from this repository into a NEW Vercel project. Set the environment variables above, run the Supabase SQL, then deploy. Configure the real domain only after ownership and DNS access are confirmed.

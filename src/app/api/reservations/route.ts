@@ -31,8 +31,11 @@ export async function POST(req:Request){
   }).select("id").single();
   if(error)throw error;
   if(process.env.RESEND_API_KEY&&process.env.RESTAURANT_RESERVATION_EMAIL){
-   const resend=new Resend(process.env.RESEND_API_KEY);
-   await resend.emails.send({from:process.env.RESEND_FROM_EMAIL||"Cielo Largo <reservas@resend.dev>",to:process.env.RESTAURANT_RESERVATION_EMAIL,subject:"Nueva solicitud de reserva · Cielo Largo",html:`<h2>Nueva solicitud de reserva</h2><p><b>Cliente:</b> ${escapeHtml(parsed.data.customer_name)}</p><p><b>Teléfono:</b> ${escapeHtml(parsed.data.phone)}</p><p><b>Fecha:</b> ${parsed.data.reservation_date} · ${parsed.data.reservation_time}</p><p><b>Personas:</b> ${parsed.data.guests}</p><p><b>Observaciones:</b> ${escapeHtml(parsed.data.notes)}</p><p>Estado: pendiente de confirmación. Ref: ${data.id}</p>`});
+   try {
+    const resend=new Resend(process.env.RESEND_API_KEY);
+    const sent=await resend.emails.send({from:process.env.RESEND_FROM_EMAIL||"Cielo Largo <reservas@resend.dev>",to:process.env.RESTAURANT_RESERVATION_EMAIL,subject:"Nueva solicitud de reserva · Cielo Largo",html:`<h2>Nueva solicitud de reserva</h2><p><b>Cliente:</b> ${escapeHtml(parsed.data.customer_name)}</p><p><b>Teléfono:</b> ${escapeHtml(parsed.data.phone)}</p><p><b>Fecha:</b> ${parsed.data.reservation_date} · ${parsed.data.reservation_time}</p><p><b>Personas:</b> ${parsed.data.guests}</p><p><b>Observaciones:</b> ${escapeHtml(parsed.data.notes)}</p><p>Estado: pendiente de confirmación. Ref: ${data.id}</p>`});
+    if(sent.error)console.error("Reservation email failed",sent.error);
+   } catch(emailError){console.error("Reservation email failed",emailError);}
   }
   return NextResponse.json({id:data.id,status:"pending"},{status:201});
  }catch(e){console.error("Reservation request failed",e);return NextResponse.json({error:"No se ha podido registrar la solicitud."},{status:500});}
